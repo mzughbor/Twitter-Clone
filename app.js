@@ -1,12 +1,12 @@
-let author = 'mzughbor';
+let author = 'محمود ♊';
 let newTweetText = document.querySelector('.post-tweet-text');
 let tweetButton = document.querySelector('.tweet-button');
 let arrayOfTweets = [{
     author: author,
-    tweetText: "This tweet for first time as a test ok it'll overwritten"
+    tweetText: "Hi there let's pin this tweet! "
 }]
 let mainSection = document.querySelector('.main-feed');
-let tweetsBox = document.querySelector('.feed-tweet');
+let tweetsBox = document.querySelector('.feed-tweet-dom');
 mainSection.appendChild(tweetsBox);
 
 function builtTweet() {
@@ -14,21 +14,25 @@ function builtTweet() {
         let newFeedTweet = document.createElement('div');
         tweetsBox.prepend(newFeedTweet);
         newFeedTweet.className = 'feed-tweet';
+        /*newFeedTweet.setAttribute('flex-direction', 'column');*/
+
+        let newDiv = document.createElement('div'); ///*
+        newFeedTweet.append(newDiv);
+        newDiv.className = 'tweet-img'
 
         let userimg = document.createElement('img');
-        newFeedTweet.appendChild(userimg);
+        newDiv.append(userimg);
         userimg.className = 'tweet-img';
         userimg.setAttribute('src', './myprityface.jpg')
 
-        let newFeedTweetdetails= document.createElement('div');
-        tweetsBox.prepend(newFeedTweetdetails);
+        let newFeedTweetdetails= document.createElement('div');///*
+        newFeedTweet.append(newFeedTweetdetails);
         newFeedTweetdetails.className = 'feed-tweet-details';
 
         let TweeterDetailsdiv = document.createElement('div');//
         //newFeedTweetdetails.prepend(TweeterDetailsdiv);
         TweeterDetailsdiv.className = 'tweeter-details';
-        newFeedTweetdetails.appendChild(TweeterDetailsdiv);
-
+        newFeedTweetdetails.append(TweeterDetailsdiv);
 
         let linkName = document.createElement('a');
         TweeterDetailsdiv.append(linkName);
@@ -36,7 +40,7 @@ function builtTweet() {
         linkName.textContent = tweet.author;
 
         let spanName= document.createElement('span');
-        linkName.prepend(spanName);
+        linkName.append(spanName);
         spanName.className = 'tweeter-handle';
         spanName.textContent = '@mzughbor ~ 1.min';
 
@@ -53,7 +57,6 @@ function builtTweet() {
         //newFeedTweetdetails.prepend(listIcons);
         listIcons.className = "tweet-icons"
         newFeedTweetdetails.appendChild(listIcons);
-
 
         let icons = document.createElement('svg');
         icons.className = "main-svg"
@@ -103,9 +106,9 @@ tweetButton.addEventListener('click', (e) => {
     };
     arrayOfTweets.push(tweetDetails)
     e.preventDefault();
-    //tweetsBox.textContent = "";
+    tweetsBox.textContent = "";
     builtTweet()
-    //newTweetText.value = ""
+    newTweetText.value = ""
 
 
 });
